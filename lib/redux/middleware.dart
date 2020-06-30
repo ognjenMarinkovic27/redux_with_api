@@ -22,9 +22,10 @@ Future<List<Item>> fetchItems() async {
 void fetchItemsMiddleware(Store<AppState> store, action, NextDispatcher next) async {
 
   print(action.toString() + ' in fetchItemsMiddleware');
+  next(action);
   if(action is FetchItemsAction) {
-    await fetchItems().then((List<Item> items) => store.dispatch(FetchItemsSucceededAction(items))).catchError((Object error) => store.dispatch(FetchItemsFailedAction(error)));
+    await fetchItems().then((List<Item> items) {store.dispatch(FetchItemsSucceededAction(items));}).catchError((Object error) {store.dispatch(FetchItemsFailedAction(error));});
   }
 
-  next(action);
+
 }

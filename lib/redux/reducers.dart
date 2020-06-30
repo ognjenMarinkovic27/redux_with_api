@@ -4,6 +4,7 @@ import 'actions.dart';
 AppState appReducer(AppState state, action) {
   print(action.toString()+' in appReducer');
   if(action is FetchItemsAction) {
+    print('isFetching true');
     return AppState(
       items: itemReducer(state.items, action),
       isFetching: true,
@@ -11,6 +12,7 @@ AppState appReducer(AppState state, action) {
     );
   }
   else if(action is FetchItemsSucceededAction) {
+    print('isFetching false');
     return AppState(
       items: itemReducer(state.items, action),
       isFetching: false,
@@ -18,10 +20,11 @@ AppState appReducer(AppState state, action) {
     );
   }
   else if(action is FetchItemsFailedAction) {
+    print('isFetching false');
     return AppState(
-        items: itemReducer(state.items, action),
-        isFetching: false,
-        error: action.error
+      items: itemReducer(state.items, action),
+      isFetching: false,
+      error: action.error
     );
   }
 

@@ -40,16 +40,16 @@ class Home extends StatelessWidget {
             children: <Widget>[
               viewModel.isFetching ?
               Expanded(
-                child: ListView.builder(
-                    itemCount: viewModel.items.length,
-                    itemBuilder: (context, index) => ListTile(title: Text(viewModel.items[index].title!=null ? viewModel.items[index].title : "notext"), subtitle: Text(viewModel.items[index].subtitle!=null ? viewModel.items[index].subtitle : "notext"),)
-                ),
-              ) :
-              Expanded(
                 child: Center(
                   child: CircularProgressIndicator(
                     value: null,
                   ),
+                ),
+              ) :
+              Expanded(
+                child: ListView.builder(
+                    itemCount: viewModel.items.length,
+                    itemBuilder: (context, index) => ListTile(title: Text(viewModel.items[index].title!=null ? viewModel.items[index].title : "notext"), subtitle: Text(viewModel.items[index].subtitle!=null ? viewModel.items[index].subtitle : "notext"),)
                 ),
               ),
               RaisedButton(
